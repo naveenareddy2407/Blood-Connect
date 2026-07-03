@@ -1,0 +1,142 @@
+{% extends "base.html" %}
+{% load static %}
+{% block linkcss%}<link rel='stylesheet' href='{% static "css/profile.css" %}'>{% endblock %}
+{% block body %}
+<style>
+    .navbar .profile a{
+        background-color: #ddd;
+        color: black;
+    }
+    body {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        background-image:url("{% static 'images/profileimage.png' %}");
+        background-color: rgb(24, 89, 187);
+        background-repeat:no-repeat;
+        background-size: cover;
+        height:90vh;
+        overflow:hidden;
+    }
+</style>
+<div class="main-container">
+    {% if profile %}
+    <div class='register-data'>
+        <h1>{{ request.user }} Profile</h1>
+        {% if messages %}
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor%}
+        {%endif%}
+    <table>
+        <tr>
+            <th>Full Name</th>
+            <td>{{ profile.Name }}</td>
+        </tr>
+        <tr>
+            <th>Phone</th>
+            <td >{{ profile.Phone }}</td>
+        </tr>
+        <tr>
+            <th>Blood Group</th>
+            <td>{{ profile.Blood_type }}</td>
+        </tr>
+        <tr>
+            <th>Drinking</th>
+            {% if  profile.Drinking == True %}
+            <td>Yes</td>
+            {% else %}
+            <td>No</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Smoking</th>
+            {% if  profile.Smoking == True %}
+            <td>Yes</td>
+            {% else %}
+            <td>No</td>
+            {% endif %}
+        </tr>
+        <tr>
+            <th>Current Address</th>
+            <td>{{ profile.current_Address }}</td>
+        </tr>
+        <tr>
+            <th>Permanent Address</th>
+            <td>{{ profile.Address }}</td>
+        </tr>
+        <tr>
+            <th>Health Issues</th>
+            <td>{{ profile.Health_issue }}</td>
+        </tr>
+        <tr>
+            <th><button><a style='text-decoration:None;color:#ccc;' type='submit'href="{% url 'editprofile' %}">Update</a></button></th>
+            <td><button><a style='text-decoration:None;color:#ccc;' type='submit'href="{% url 'editprofile' %}">Delete</a></button></td>
+        </tr>
+    </table>
+    </div> 
+     {% else %}
+     <div class="register-container">
+        <h2>Profile</h2>
+        <p style='margin-left:40%'>{{error}}<p>
+        <form action="/profile" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="Name">full Name</label>
+                <input type="text" id="Name" name="Name"  required>
+            </div>
+            <div class="input-group">
+                <label for="Address">Phone</label>
+                <input type="number" id="phone" name="Phone" required>
+            </div>
+            <div class="input-group">
+                <label for="blood_type">Blood Type</label>
+                <select id="bloodtype" name="Blood_type" required>
+                    <option value="">Select Blood Type</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="Address">Address</label>
+                <textarea type="text" id="address" name="Address" required></textarea>
+            </div>
+            <div class="input-group">
+                <label for="Current_Address">Current Address</label>
+                <textarea type="text" id="address" name="current_Address" ></textarea>
+            </div>
+            <div class="input-group">
+                <label for="health">Any Health issues</label>
+                <input type="text" id="email" name="Health_issue" >
+            </div>
+            <div class="input-group">
+                <label for="DOB">Date of Birth</label>
+                <input type="date"  name="D_O_B" >
+            </div>
+            <div class="input-group" style='margin-top:10px;display:flex'>
+                <div style='margin-left:10px;margin-right:100px;'>
+                    <label for="Drinking">Drinking</label>
+                    <input style='width:30px'  type="checkbox" id="email" name="Drinking" >
+                </div>
+                <div>
+                    <label for="Smoking">Smoking</label>
+                    <input style='width:30px'type="checkbox" id="email" name="Smoking" >
+                </div>
+            </div>
+            <div class="input-group"  > 
+            </div>
+            <div class="input-group"  > 
+            </div>
+            <button type="submit">Register</button>
+        </form>
+     </div>
+     {% endif %}
+</div>
+{% endblock%}

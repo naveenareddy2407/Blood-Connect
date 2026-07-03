@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static %}
+{% block linkcss%}<link rel='stylesheet' href='{% static "css/profile.css" %}'>{% endblock %}
+{% block body %}
+<style>
+    .navbar .profile a{
+        background-color: #ddd;
+        color: black;
+    }
+    body {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        background-image:url("{% static 'images/profileimage.png' %}");
+        background-color: rgb(24, 89, 187);
+        background-repeat:no-repeat;
+        background-size: cover;
+        height:90vh;
+    }
+</style>
+<div class="main-container">
+    <div class="register-container">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="Full_Name">Full Name</label>
+                {{ form.Name }}
+            </div>
+            <div class="input-group">
+                <label for="Phone">Phone</label>
+                {{ form.Phone }}
+            </div>
+            <div class="input-group">
+                <label for="Blood_type">Blood Type</label>
+                {{ form.Blood_type }}
+            </div>
+            <div class="input-group">
+                <label for="Address">Address</label>
+                {{ form.Address }}
+            </div>
+            <div class="input-group">
+                <label for="current_Address">Current Address</label>
+                {{ form.current_Address }}
+            </div>
+            <div class="input-group">
+                <label for="Date_of_Birth">Date of Birth</label>
+                {{ form.Date_of_Birth }}
+            </div>
+            <div class="input-group">
+                <div>
+                <label for="Drinking">Drinking</label>
+                {{ form.Drinking }}
+                <label for="Smoking">Smoking</label>
+                {{ form.Smoking }}
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="Health_issue">Health Issues</label>
+                {{ form.Health_issue }}
+            </div>
+            <div class="input-group">
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock%}

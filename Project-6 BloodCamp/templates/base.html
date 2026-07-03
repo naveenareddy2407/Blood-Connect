@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/Base.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    {%block linkcss%}{% endblock %}
+    <title>Home</title>
+</head>
+<style>
+    .navbar h3{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        color:#ffff;
+        padding-left:20px;
+    }
+</style>
+<body>
+    <nav class="navbar">
+        <h3>Blood Donation</h3>
+        <ul >
+            <li class='home'><a href="{% url 'home' %}"><img src="{% static 'images/home.png' %}" alt="img"><span>Home</span></a></li>
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                <li class='search' ><a href="{% url 'search'%}"><img src="{% static 'images/search.png' %}" alt="img"><span>search</span></a></li>
+                <li class='active'><a href="{% url 'logout'%}"><img  src="{% static 'images/logout.png' %}" alt="img"><span>Logout</span></a></li>
+                {% else %}
+                <li class='profile'><a href="{% url 'profile'%}"><img src="{% static 'images/Register.png' %}" alt="img"><span>Profile</span></a></li>
+                <li class='active'><a href="{% url 'logout'%}"><img  src="{% static 'images/logout.png' %}" alt="img"><span>Logout</span></a></li>
+                {% endif %}
+            {% else %}
+            <li class='register'><a href="{% url 'registration'%}"><img src="{% static 'images/Register.png' %}" alt="img"><span>Register</span></a></li>
+            <li class='login'><a href="{% url 'login'%}"><img src="{% static 'images/login.png' %}" alt="img"><span>Login</span></a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <section style='margin-top:60px'>
+        {%block body%}{% endblock%}
+    </section>
+</body>
+</html>

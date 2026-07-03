@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+{% block linkcss%}<link rel='stylesheet' href='{% static "css/register.css" %}'>{% endblock %}
+{% block body %}
+<style>
+    .navbar .register a{
+        background-color: #ddd;
+        color: black;
+    }
+    body {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        background-repeat:no-repeat;
+        background-size: cover;
+        height:90vh;
+        overflow:hidden;
+    }
+    label{
+        color:black
+    }
+</style>
+<div class="main-container">
+    <div class="register-container">
+        <h2 style='color:#ffff'>Register</h2>
+        {% if error %}
+        <p style='padding:10px;color: red;background-color:#ffff'>{{error}}<p>
+        {% else %}
+        {% endif %}
+        <form action="/registration" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="fullname">Username</label>
+                <input type="text" id="fullname" name="Full_Name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email"  name="Email" required>
+            </div>
+            <div class="input-group">
+                <label for="date_of_Birth">Date of birth</label>
+                <input type="date"  name="Date_of_Birth" required>
+            </div>
+            <div class="input-group">
+                <label for="password">password</label>
+                <input type="password"  name="password" required>
+            </div>
+            <div class="input-group">
+                <label for="confirmation_password">confirmation password</label>
+                <input type="password"name="confirmation_password" required>
+            </div>
+            <div style='display:flex'>
+            <button onclick="openPopup()" type="submit" >Register</button>
+            <div>
+                <p style='color:#ffff'>already have account..?</p>
+                <a href="{% url 'login' %}" style='margin-left:80px;color: #13f00b;'>login</a>
+            </div>
+        </div>
+        </form>
+     </div>
+</div>
+{% endblock%}

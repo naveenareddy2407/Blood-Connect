@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static %}
+{% block linkcss%}<link rel='stylesheet' href='{% static "css/registration.css" %}'>{% endblock %}
+{% block body %}
+<div class="main-container">
+    <div class="register-container">
+        <h2>Patient Details</h2>
+        <p style='margin-left:40%'>{{error}}</p>
+        <form action="/addpatient" method="post">
+            {% csrf_token %}
+            <div class="input-group">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="Full_Name" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="Email" required>
+            </div>
+            <div class="input-group">
+                <label for="Phone">Phone</label>
+                <input type="text" id="Phone" name="Phone" required>
+            </div>
+            <div class="input-group">
+                <label for="bloodtype">Blood Type</label>
+                <select id="bloodtype" name="Blood_type" required>
+                    <option value="">Select Blood Type</option>
+                    <option value="A+">A+</option>
+                    <option value="A-">A-</option>
+                    <option value="B+">B+</option>
+                    <option value="B-">B-</option>
+                    <option value="AB+">AB+</option>
+                    <option value="AB-">AB-</option>
+                    <option value="O+">O+</option>
+                    <option value="O-">O-</option>
+                </select>
+            </div>
+            <div class="input-group">
+            </div>
+            <div class="input-group">
+            </div>
+            <div class="input-group">
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</div>
+{% endblock%}

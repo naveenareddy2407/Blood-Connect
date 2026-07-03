@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block linkcss%}<link rel="stylesheet" href="{% static 'css/login.css' %}">{% endblock %}
+{% block body%}
+<style>
+    .navbar .login a{
+        background-color: #ddd;
+        color: black;
+    }
+    .main-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh; 
+        background-image:url("{% static 'images/Speech-on-Blood-Donation.png' %}");
+        background-repeat:no-repeat;
+        background-size: cover;
+    }
+    @media (max-width: 768px) {
+        .main-container {
+            background-image:url("{% static 'images/loginimage.png' %}");
+        }
+    }
+</style>
+<div class='main-container'>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form action="/login" method="post">
+            {% csrf_token %}
+            <p style='color:red'>{{error}}</p>
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <div >
+                <p style='color:#ffff'>New account..?<a href="{% url 'registration' %}" style='margin-left:20px;color: #13f00b;'>Register</a></p>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock%}

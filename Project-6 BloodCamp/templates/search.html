@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block linkcss%}
+<link rel='stylesheet' href="{% static 'css/search.css' %}">
+{% endblock%}
+{% block body%}
+<style>
+    .navbar .search a{
+        background-color: #ddd;
+        color: black;
+    }
+    body{
+        background-image:url("{% static 'images/human-blood-donate-on-white-background-free-vector.jpg' %}");
+        background-repeat:no-repeat;
+        background-size: cover;
+        height:100%;
+    }
+    .main-container{
+        height:85vh;
+    }
+    .table-container{
+        background-color:#ffff;
+    }
+    @media (max-width: 768px) {
+        body{
+            background-image:url("{% static 'images/blood_drop_search.gif' %}");
+            background-repeat:no-repeat;
+            background-size: cover;
+            height:100%;
+        }
+    }
+</style>
+<div class='main-container'>
+    <form action="/search" method="post">
+        {% csrf_token %}
+        <div >
+            <label for="blood_type">Blood Type</label>
+            <select id="bloodtype" name="Blood_type" required>
+                <option value="">Select Blood Type</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
+        </div>
+        <button type="submit">search</button>
+    </form>
+    {% if search %}
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Blood group</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in search %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{item.Full_Name}}</td>
+                    <td>{{item.Phone}}</td>
+                    <td>{{item.Blood_type}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <h2 style='display:flex;justify-content:center;align-items:center'>{{message}}</h2>
+    {% endif %}
+</div>
+{% endblock%}

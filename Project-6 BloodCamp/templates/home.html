@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{%block linkcss%}<link rel="stylesheet" href="{% static 'css/main.css' %}">{% endblock %}
+{% block body%}
+<style>
+    .navbar .home a{
+        background-color: #ddd;
+        color: black;
+    }
+    .home-logo h2{
+        height:90vh;
+        background-image:url("{% static 'images/bloodhome.jpg' %}");
+        background-repeat:no-repeat;
+        background-size: cover;
+        display:flex;
+        justify-content:end;
+        text-align:end;
+        align-items:center;
+        padding-right:10%;
+        padding-top:14%;
+        font-size:50px;
+        color: rgb(224, 56, 14);
+    }
+    @media (max-width: 768px) {
+        .home-logo h2{
+            height:90vh;
+            background-image:url("{% static 'images/bloodhome.jpg' %}");
+            background-repeat:no-repeat;
+            background-size: cover;
+            display:flex;
+            justify-content:end;
+            text-align:end;
+            align-items:start;
+            padding-top:30%;
+            padding-right:5%;
+            font-size:25px;
+            color: rgb(224, 56, 14);
+        }
+    }
+
+</style>
+<div class='home-logo'>
+    <h2>A single drop of your blood <br>could be a drop of life for someone else.</h2>
+</div>
+<div class="eligibility">
+    <div class="eligibility-content">
+        <h2>Eligibility Requirements</h2>
+        <h5>To be eligible to donate whole blood, plasma or platelets, you must be:</h5>
+        <ul>
+            <li>In good health.</li>
+            <li>At least 16 or 17 years old, depending on the law in your state. Some states allow legal minors to donate with parent permission.</li>
+            <li>While there's no legal upper age limit, policies may vary between individual donor centers.</li>
+            <li>At least 110 pounds (about 50 kilograms).</li>
+            <li>Able to pass the physical and health-history assessments.</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
