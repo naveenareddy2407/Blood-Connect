@@ -1,8 +1,8 @@
-# 🩸 Online Blood Donation & Request Portal
+# 🩸 Blood-Connect
 
 ## 📌 Project Overview
 
-The Online Blood Donation & Request Portal is a web application developed to connect blood donors and recipients efficiently. It enables users to register as donors, search for available donors based on blood group, and submit blood requests, helping reduce the time required to find suitable donors during emergencies.
+This Blood-Connect is a web application developed to connect blood donors and recipients efficiently. It enables users to register as donors, search for available donors based on blood group, and submit blood requests, helping reduce the time required to find suitable donors during emergencies.
 
 ---
 
