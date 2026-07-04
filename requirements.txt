@@ -1,10 +1,4 @@
-Flask
-opencv-python
-numpy
-pandas
-face-recognition
-dlib
-firebase-admin
+Django
 Pillow
 python-dotenv
-requests
+MySQL
